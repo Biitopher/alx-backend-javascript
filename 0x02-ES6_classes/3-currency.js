@@ -1,35 +1,13 @@
-class Currency {
-  constructor(code, name) {
-    this._code = typeof code === 'string' ? code : '';
-    this._name = typeof name === 'string' ? name : '';
+class Building {
+  constructor(sqft) {
+    this._sqft = typeof sqft === 'number' ? sqft : 0;
   }
 
-  get code() {
-    return this._code;
+  get sqft() {
+    return this._sqft;
   }
 
-  get name() {
-    return this._name;
-  }
-
-  set code(newCode) {
-    if (typeof newCode === 'string') {
-      this._code = newCode;
-    } else {
-      throw new Error('Code should be a string.');
-    }
-  }
-
-  set name(newName) {
-    if (typeof newName === 'string') {
-      this._name = newName;
-    } else {
-      throw new Error('Name should be a string.');
-    }
-  }
-
-  displayFullCurrency() {
-    return `${this._name} (${this._code})`;
+  evacuationWarningMessage() {
+    throw new Error('Class extending Building must override evacuationWarningMessage');
   }
 }
-export default Currency;
