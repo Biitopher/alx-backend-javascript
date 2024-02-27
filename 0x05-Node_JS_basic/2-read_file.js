@@ -29,12 +29,4 @@ function countStudents(path) {
       }
     });
 
-    console.log(`Number of students: ${totalStudents}`);
-    console.log(`Number of students in Math: ${mathStudents}. List: ${mathList.join(', ')}`);
-    console.log(`Number of students in CS: ${CSStudents}. List: ${CSList.join(', ')}`);
-  } catch (error) {
-    console.error('Cannot load the database');
-  }
-}
-
 module.exports = countStudents;
