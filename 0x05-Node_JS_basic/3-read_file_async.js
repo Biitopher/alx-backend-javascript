@@ -12,7 +12,7 @@ function countStudents(path) {
         const count = totalstudents.length;
 
         const fields = {};
-        totalstudents.forEach((student =>) {
+        totalstudents.forEach(student => {
           const field = student[3];
           if (fields[field]) {
             fields[field].push(student[0]);
