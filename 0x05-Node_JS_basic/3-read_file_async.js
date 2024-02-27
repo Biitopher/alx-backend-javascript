@@ -6,13 +6,13 @@ function countStudents(path) {
       if (err) {
         reject(new Error("Cannot load the database"));
       } else {
-        const lines = data.split('\n').filter(line (=>) line.trim() !== '');
+        const lines = data.split('\n').filter((line =>) line.trim() !== '');
 
         const totalstudents = lines.slice(1).map((line =>) line.split(','));
         const count = totalstudents.length;
 
         const fields = {};
-        totalstudents.forEach(student =>) {
+        totalstudents.forEach((student =>) {
           const field = student[3];
           if (fields[field]) {
             fields[field].push(student[0]);
