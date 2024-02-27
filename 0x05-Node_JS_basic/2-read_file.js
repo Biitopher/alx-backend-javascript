@@ -18,7 +18,7 @@ const countStudents = (path) => {
   const fields = {};
   students.forEach((student, index) => {
     if (index !== 0) {
-      const [firstName, age, field] = student;
+      const [firstName, field] = student;
 
       if (!fields[field]) fields[field] = [];
       fields[field].push(firstName);
