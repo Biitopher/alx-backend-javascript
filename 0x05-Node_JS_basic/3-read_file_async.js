@@ -4,7 +4,7 @@ function countStudents(path) {
   return new Promise((resolve, reject) => {
     fs.readFile(path, 'utf8', (err, data) => {
       if (err) {
-        reject(new Error("Cannot load the database"));
+        reject(new Error('Cannot load the database'));
       } else {
         const lines = data.split('\n').filter(line => line.trim() !== '');
 
@@ -12,7 +12,7 @@ function countStudents(path) {
         const count = totalstudents.length;
 
         const fields = {};
-        totalstudents.forEach(student => {
+        totalstudents.forEach((student =>) {
           const field = student[3];
           if (fields[field]) {
             fields[field].push(student[0]);
@@ -25,8 +25,8 @@ function countStudents(path) {
         for (const field in fields) {
           console.log(
             `Number of students in ${field}: ${fields[
-             field].length}. List: ${fields[field].join(', ')}`
-             );
+              field].length}. List: ${fields[field].join(', ')}`,
+          );
         }
 
         resolve({ count, fields });
@@ -34,6 +34,5 @@ function countStudents(path) {
     });
   });
 }
-
 
 module.exports = countStudents;
