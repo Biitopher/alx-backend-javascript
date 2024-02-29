@@ -1,10 +1,14 @@
 const request = require('request');
-const { expect } = require('chai');
+const { expect } = require('assert');
 const server = require('./api');
 
 const BASE_URL = 'http://localhost:7865';
 
 describe('Index Page', () => {
+    after( () {
+        server.close();
+    });
+describe('GET /', () {
   it('returns status code 200', (done) => {
     request.get(BASE_URL, (error, response) => {
       expect(response.statusCode).to.equal(200);

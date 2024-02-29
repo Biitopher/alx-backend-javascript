@@ -1,7 +1,7 @@
 {
   "name": "8-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Basic integration testing for Node",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha"
