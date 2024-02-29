@@ -1,10 +1,10 @@
 const request = require('request');
 const { expect } = require('chai');
 
-describe('API Test', () => {
+describe('API integration test', () => {
   const API_URL = 'http://localhost:7865';
 
-  it('GET / responds with status code 200', (done) => {
+  it('GET / returns correct response', (done) => {
     request.get(`${API_URL}/`, (_err, res, body) => {
       expect(res.statusCode).to.be.equal(200);
       expect(body).to.be.equal('Welcome to the payment system');
@@ -12,7 +12,7 @@ describe('API Test', () => {
     });
   });
 
-  it('GET /cart/:id responds with correct result :id', (done) => {
+  it('GET /cart/:id returns correct response for valid :id', (done) => {
     request.get(`${API_URL}/cart/47`, (_err, res, body) => {
       expect(res.statusCode).to.be.equal(200);
       expect(body).to.be.equal('Payment methods for cart 47');
@@ -33,3 +33,4 @@ describe('API Test', () => {
       done();
     });
   });
+});
