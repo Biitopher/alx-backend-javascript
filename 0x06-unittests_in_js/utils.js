@@ -20,6 +20,7 @@ class Utils {
       }
       return x;
   }
+}
 
 module.exports = Utils;
 
