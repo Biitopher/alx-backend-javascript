@@ -1,8 +1,8 @@
 const {describe, it} = require('mocha');
 const sinon = require('sinon');
 const { sendPaymentRequestToApi } = require('./3-payment');
-const assert = require("assert");
 const Utils = require('./utils');
+const assert = require("assert");
 
 describe('sendPaymentRequestToApi', function() => {
   it('should call Utils.calculateNumber with the correct arguments and log the result', function() => {
