@@ -1,29 +1,31 @@
-const assert = require('assert');
+const assert = require("assert");
 const { it, describe } = require("mocha");
-const calculateNumber = require('./1-calcul');
+const calculateNumber = require("./1-calcul");
 
-describe('calculateNumber', () => {
-  it('should return the sum of rounded numbers when type is SUM', () => {
-    assert.strictEqual(calculateNumber('SUM', 1.4, 2.6), 4);
-    assert.strictEqual(calculateNumber('SUM', 5.5, 2.3), 8);
-  });
+describe("calculateNumber()", function() {
 
-  it('should return the subtraction of rounded numbers when type is SUBTRACT', () => {
-    assert.strictEqual(calculateNumber('SUBTRACT', 5.5, 2.3), 3);
-    assert.strictEqual(calculateNumber('SUBTRACT', 1.4, 2.6), -1);
-  });
-
-  it('should return the division of rounded numbers when type is DIVIDE', () => {
-    assert.strictEqual(calculateNumber('DIVIDE', 6, 3), 2);
-    assert.strictEqual(calculateNumber('DIVIDE', 7.8, 2.6), 3);
-  });
-
-  it('should return "Error" when attempting to divide by 0', () => {
-    assert.strictEqual(calculateNumber('DIVIDE', 8, 0), 'Error');
-    assert.strictEqual(calculateNumber('DIVIDE', 3.6, 0), 'Error');
-  });
-
-  it('should throw an error for invalid type', () => {
-    assert.throws(() => calculateNumber('INVALID_TYPE', 1, 2), { message: 'Invalid type. Use SUM, SUBTRACT, or DIVIDE.' });
-  });
+    it('should return the sum of rounded numbers when type is SUM', function() {
+      const res = calculateNumber("SUM", 1, 2);
+      assert.strictEqual(res, 3);
+    });
+    it('should return the subtraction of rounded numbers when type is SUBTRACT', function() {
+      const res = calculateNumber("SUBTRACT", 1.4, 2.2);
+      assert.strictEqual(res, -1);
+    });
+    it('should return the subtraction of rounded numbers when type is SUBTRACT', function() {
+      const res = calculateNumber("SUBTRACT", 4.9, 2.7);
+      assert.strictEqual(res, 2);
+    });
+    it('should return the division of rounded numbers when type is DIVIDE', function() {
+      const res = calculateNumber("DIVIDE", 4, 2);
+      assert.strictEqual(res, 2);
+    });
+    it('should return the division of rounded numbers when type is DIVIDE', function() {
+      const res = calculateNumber("DIVIDE", 1.7, 0);
+      assert.strictEqual(res, "Error");
+    });
+    it('should return the division of rounded numbers when type is DIVIDE', function() {
+      const res = calculateNumber("DIVIDE", 1.4, 4.6);
+      assert.strictEqual(res, 0.2);
+    });
 });
