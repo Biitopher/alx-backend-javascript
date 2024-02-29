@@ -5,8 +5,8 @@ const calculateNumber = require("./1-calcul");
 describe("calculateNumber()", function() {
 
     it('should return the sum of rounded numbers when type is SUM', function() {
-      const res = calculateNumber("SUM", 1, 2);
-      assert.strictEqual(res, 3);
+      const res = calculateNumber("SUM", 4, 2);
+      assert.strictEqual(res, 6);
     });
     it('should return the subtraction of rounded numbers when type is SUBTRACT', function() {
       const res = calculateNumber("SUBTRACT", 1.4, 2.2);
@@ -17,8 +17,8 @@ describe("calculateNumber()", function() {
       assert.strictEqual(res, 2);
     });
     it('should return the division of rounded numbers when type is DIVIDE', function() {
-      const res = calculateNumber("DIVIDE", 4, 2);
-      assert.strictEqual(res, 2);
+      const res = calculateNumber("DIVIDE", 10, 2);
+      assert.strictEqual(res, 5);
     });
     it('should return the division of rounded numbers when type is DIVIDE', function() {
       const res = calculateNumber("DIVIDE", 1.7, 0);
