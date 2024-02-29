@@ -1,7 +1,7 @@
 const request = require('request');
 const { expect } = require('chai');
 
-describe('API integration test', () => {
+describe('API Test', () => {
   const API_URL = 'http://localhost:7865';
 
   it('GET / responds with status code 200', (done) => {

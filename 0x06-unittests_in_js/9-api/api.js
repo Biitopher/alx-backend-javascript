@@ -12,8 +12,8 @@ app.get('/cart/:id(\\d+)', (req, res) => {
     res.send(`Payment methods for cart ${cartId}`);
 });
 
-const server = app.listen(PORT, () => {
-    console.log(`API available on localhost ${PORT}`);
+app.listen(PORT, () => {
+    console.log(`API available on localhost port ${PORT}`);
 });
 
-module.exports = server;
+module.exports = app;
