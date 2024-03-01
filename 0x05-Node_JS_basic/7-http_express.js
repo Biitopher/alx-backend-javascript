@@ -1,34 +1,27 @@
 const express = require('express');
+
+const args = process.argv.slice(2);
 const countStudents = require('./3-read_file_async');
 
+const DATABASE = args[0];
+
 const app = express();
+const port = 1245;
 
 app.get('/', (req, res) => {
   res.send('Hello Holberton School!');
 });
 
-app.get('/students', (req, res) => {
-  countStudents('database.csv')
-    .then((data) => {
-      const { totalCount } = data;
-      const { fields } = data;
-
-      let response = `This is the list of our students\nNumber of students: ${totalCount}\n`;
-      for (const field in fields) {
-        if (Object.prototype.hasOwnProperty.call(fields, field)) {
-          response += `Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}\n`;
-        }
-      }
-      res.send(response);
-    })
-    .catch((error) => {
-      res.status(500).send(error.message);
-    });
+app.get('/students', async (req, res) => {
+  const msg = 'This is the list of our students\n';
+  try {
+    const students = await countStudents(DATABASE);
+    result.send(`${msg}${students.join('\n')}`);
+  } catch (error) {
+    result.send(`${msg}${error.message}`);
+  }
 });
 
-const PORT = 1245;
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+app.listen(port, () => { });
 
 module.exports = app;
