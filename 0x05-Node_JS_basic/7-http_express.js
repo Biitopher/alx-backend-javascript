@@ -8,11 +8,11 @@ const DATABASE = args[0];
 const app = express();
 const port = 1245;
 
-app.get('/', (request, result) => {
-  result.send('Hello Holberton School!');
+app.get('/', (req, res) => {
+  res.send('Hello Holberton School!');
 });
 
-app.get('/students', async (request, result) => {
+app.get('/students', async (req, res) => {
   const msg = 'This is the list of our students\n';
   try {
     const students = await countStudents(DATABASE);
