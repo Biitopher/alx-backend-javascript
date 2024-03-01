@@ -2,36 +2,49 @@ const fs = require('fs');
 
 function countStudents(path) {
   return new Promise((resolve, reject) => {
-    fs.readFile(path, 'utf8', (err, data) => {
-      if (err) {
-        reject(new Error('Cannot load the database'));
-      } else {
-        const lines = data.split('\n').filter(line => line.trim() !== '');
+    fs.readFile(path,
+      { encoding: 'utf8', flag: 'r' },
+      (err, data) => {
+        if (err) {
+          reject(Error('Cannot load the database'));
+          return;
+        }
+        const response = [];
+        let msg;
 
-        const totalstudents = lines.slice(1).map(line => line.split(','));
-        const count = totalstudents.length;
+        const content = data.split('\n');
+
+        let students = content.filter((item) => item);
+
+        students = students.map((item) => item.split(','));
+
+        const studentSize = students.length ? students.length - 1 : 0;
+        msg = `Number of students: ${studentSize}`;
+        console.log(msg);
+
+        response.push(msg);
 
         const fields = {};
-        totalstudents.forEach(student => {
-          const field = student[3];
-          if (fields[field]) {
-            fields[field].push(student[0]);
-          } else {
-            fields[field] = [student[0]];
-          }
-        });
+        for (const i in students) {
+          if (i !== 0) {
+            if (!fields[students[i][3]]) fields[students[i][3]] = [];
 
-        console.log(`Number of students: ${count}`);
-        for (const field in fields) {
-          if (fields.hasOwnProperty(field)) {
-            console.log(
-                `Number of students in ${field}: ${fields[
-                field].length}. List: ${fields[field].join(', ')}`);
+            fields[students[i][3]].push(students[i][0]);
+          }
         }
 
-        resolve({ count, fields });
-      }
-    });
+        delete fields.field;
+
+        for (const key of Object.keys(fields)) {
+          msg = `Number of students in ${key}: ${fields[key].length
+          }. List: ${fields[key].join(', ')}`;
+
+          console.log(msg);
+
+          response.push(msg);
+        }
+        resolve(response);
+      });
   });
 }
 
